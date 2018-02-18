@@ -1,0 +1,967 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{investigate-a-dataset-template}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Project: Investigate TMDB
+Dataset}\label{project-investigate-tmdb-dataset}
+
+\subsection{Table of Contents}\label{table-of-contents}
+
+Introduction
+
+Data Wrangling
+
+Exploratory Data Analysis
+
+Conclusions
+
+     \#\# Introduction
+
+I have selected TMDB dataset for analysis.
+
+Following questions I am trying to find solution for:
+
+How budget of a movie related to revenue of the movie. Considering
+movies with minimum 500 votes and 5 average vote.
+
+\begin{verbatim}
+<b>How budget of a movie is related to average vote. Considering movies with minimum 500 votes.</b>
+\end{verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{k+kn}{import} \PY{n+nn}{warnings}
+        \PY{n}{warnings}\PY{o}{.}\PY{n}{filterwarnings}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ignore}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+\end{Verbatim}
+
+
+     \#\# Data Wrangling
+
+\subsubsection{General Properties}\label{general-properties}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+        \PY{l+s+sd}{    load\PYZus{}csv\PYZus{}file() function loads the tmdb data into pandas dataframe. It also prints first five rows.}
+        \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+        \PY{k}{def} \PY{n+nf}{load\PYZus{}csv\PYZus{}file}\PY{p}{(}\PY{n}{filename}\PY{p}{)}\PY{p}{:}
+            \PY{n}{tmdb\PYZus{}file} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{filename}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{tmdb\PYZus{}file}\PY{p}{)}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{n}{tmdb\PYZus{}file}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+            
+            \PY{k}{return} \PY{n}{tmdb\PYZus{}file}
+            
+        \PY{n}{tmdb\PYZus{}file}\PY{o}{=}\PY{n}{load\PYZus{}csv\PYZus{}file}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{tmdb\PYZhy{}movies.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+10866
+       id    imdb\_id  popularity     budget     revenue  \textbackslash{}
+0  135397  tt0369610   32.985763  150000000  1513528810   
+1   76341  tt1392190   28.419936  150000000   378436354   
+2  262500  tt2908446   13.112507  110000000   295238201   
+3  140607  tt2488496   11.173104  200000000  2068178225   
+4  168259  tt2820852    9.335014  190000000  1506249360   
+
+                 original\_title  \textbackslash{}
+0                Jurassic World   
+1            Mad Max: Fury Road   
+2                     Insurgent   
+3  Star Wars: The Force Awakens   
+4                     Furious 7   
+
+                                                cast  \textbackslash{}
+0  Chris Pratt|Bryce Dallas Howard|Irrfan Khan|Vi{\ldots}   
+1  Tom Hardy|Charlize Theron|Hugh Keays-Byrne|Nic{\ldots}   
+2  Shailene Woodley|Theo James|Kate Winslet|Ansel{\ldots}   
+3  Harrison Ford|Mark Hamill|Carrie Fisher|Adam D{\ldots}   
+4  Vin Diesel|Paul Walker|Jason Statham|Michelle {\ldots}   
+
+                                            homepage          director  \textbackslash{}
+0                      http://www.jurassicworld.com/   Colin Trevorrow   
+1                        http://www.madmaxmovie.com/     George Miller   
+2     http://www.thedivergentseries.movie/\#insurgent  Robert Schwentke   
+3  http://www.starwars.com/films/star-wars-episod{\ldots}       J.J. Abrams   
+4                           http://www.furious7.com/         James Wan   
+
+                         tagline      {\ldots}       \textbackslash{}
+0              The park is open.      {\ldots}        
+1             What a Lovely Day.      {\ldots}        
+2     One Choice Can Destroy You      {\ldots}        
+3  Every generation has a story.      {\ldots}        
+4            Vengeance Hits Home      {\ldots}        
+
+                                            overview runtime  \textbackslash{}
+0  Twenty-two years after the events of Jurassic {\ldots}     124   
+1  An apocalyptic story set in the furthest reach{\ldots}     120   
+2  Beatrice Prior must confront her inner demons {\ldots}     119   
+3  Thirty years after defeating the Galactic Empi{\ldots}     136   
+4  Deckard Shaw seeks revenge against Dominic Tor{\ldots}     137   
+
+                                      genres  \textbackslash{}
+0  Action|Adventure|Science Fiction|Thriller   
+1  Action|Adventure|Science Fiction|Thriller   
+2         Adventure|Science Fiction|Thriller   
+3   Action|Adventure|Science Fiction|Fantasy   
+4                      Action|Crime|Thriller   
+
+                                production\_companies release\_date vote\_count  \textbackslash{}
+0  Universal Studios|Amblin Entertainment|Legenda{\ldots}       6/9/15       5562   
+1  Village Roadshow Pictures|Kennedy Miller Produ{\ldots}      5/13/15       6185   
+2  Summit Entertainment|Mandeville Films|Red Wago{\ldots}      3/18/15       2480   
+3          Lucasfilm|Truenorth Productions|Bad Robot     12/15/15       5292   
+4  Universal Pictures|Original Film|Media Rights {\ldots}       4/1/15       2947   
+
+   vote\_average  release\_year    budget\_adj   revenue\_adj  
+0           6.5          2015  1.379999e+08  1.392446e+09  
+1           7.1          2015  1.379999e+08  3.481613e+08  
+2           6.3          2015  1.012000e+08  2.716190e+08  
+3           7.5          2015  1.839999e+08  1.902723e+09  
+4           7.3          2015  1.747999e+08  1.385749e+09  
+
+[5 rows x 21 columns]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{k}{def} \PY{n+nf}{desc\PYZus{}tmdb}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{n+nb}{print}\PY{p}{(}\PY{n}{tmdb\PYZus{}file}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+            
+            \PY{n+nb}{print}\PY{p}{(}\PY{n}{tmdb\PYZus{}file}\PY{o}{.}\PY{n}{dtypes}\PY{p}{)}
+            
+        \PY{n}{desc\PYZus{}tmdb}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+                  id    popularity        budget       revenue       runtime  \textbackslash{}
+count   10866.000000  10866.000000  1.086600e+04  1.086600e+04  10866.000000   
+mean    66064.177434      0.646441  1.462570e+07  3.982332e+07    102.070863   
+std     92130.136561      1.000185  3.091321e+07  1.170035e+08     31.381405   
+min         5.000000      0.000065  0.000000e+00  0.000000e+00      0.000000   
+25\%     10596.250000      0.207583  0.000000e+00  0.000000e+00     90.000000   
+50\%     20669.000000      0.383856  0.000000e+00  0.000000e+00     99.000000   
+75\%     75610.000000      0.713817  1.500000e+07  2.400000e+07    111.000000   
+max    417859.000000     32.985763  4.250000e+08  2.781506e+09    900.000000   
+
+         vote\_count  vote\_average  release\_year    budget\_adj   revenue\_adj  
+count  10866.000000  10866.000000  10866.000000  1.086600e+04  1.086600e+04  
+mean     217.389748      5.974922   2001.322658  1.755104e+07  5.136436e+07  
+std      575.619058      0.935142     12.812941  3.430616e+07  1.446325e+08  
+min       10.000000      1.500000   1960.000000  0.000000e+00  0.000000e+00  
+25\%       17.000000      5.400000   1995.000000  0.000000e+00  0.000000e+00  
+50\%       38.000000      6.000000   2006.000000  0.000000e+00  0.000000e+00  
+75\%      145.750000      6.600000   2011.000000  2.085325e+07  3.369710e+07  
+max     9767.000000      9.200000   2015.000000  4.250000e+08  2.827124e+09  
+id                        int64
+imdb\_id                  object
+popularity              float64
+budget                    int64
+revenue                   int64
+original\_title           object
+cast                     object
+homepage                 object
+director                 object
+tagline                  object
+keywords                 object
+overview                 object
+runtime                   int64
+genres                   object
+production\_companies     object
+release\_date             object
+vote\_count                int64
+vote\_average            float64
+release\_year              int64
+budget\_adj              float64
+revenue\_adj             float64
+dtype: object
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{} Check if fields are missing\PYZsq{}\PYZsq{}\PYZsq{}}
+        \PY{k}{def} \PY{n+nf}{check\PYZus{}missing}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{n}{missing\PYZus{}field} \PY{o}{=} \PY{n}{tmdb\PYZus{}file}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{n}{missing\PYZus{}field}\PY{p}{)}
+            
+        \PY{n}{check\PYZus{}missing}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+id                         0
+imdb\_id                   10
+popularity                 0
+budget                     0
+revenue                    0
+original\_title             0
+cast                      76
+homepage                7930
+director                  44
+tagline                 2824
+keywords                1493
+overview                   4
+runtime                    0
+genres                    23
+production\_companies    1030
+release\_date               0
+vote\_count                 0
+vote\_average               0
+release\_year               0
+budget\_adj                 0
+revenue\_adj                0
+dtype: int64
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}Checking Mean and Median\PYZsq{}\PYZsq{}\PYZsq{}}
+        \PY{k}{def} \PY{n+nf}{cal\PYZus{}stats}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            
+            \PY{n}{budget\PYZus{}mean} \PY{o}{=} \PY{n}{tmdb\PYZus{}file}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{budget}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+            \PY{n}{budget\PYZus{}median} \PY{o}{=} \PY{n}{tmdb\PYZus{}file}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{budget}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{median}\PY{p}{(}\PY{p}{)}
+            
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Mean is}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{budget\PYZus{}mean}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Median is}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{budget\PYZus{}median}\PY{p}{)}
+            
+            
+            
+        \PY{n}{cal\PYZus{}stats}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Mean is 14625701.09414688
+Median is 0.0
+
+    \end{Verbatim}
+
+    Since median came as 0.0, there might be movies for which budget is
+recorded as 0. We will try to figure out if this is the case.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}Median came as 0. We will check if budget has negetive or 0 as value\PYZsq{}\PYZsq{}\PYZsq{}}
+        
+        \PY{k}{def} \PY{n+nf}{print\PYZus{}budget}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            
+            \PY{n}{budget} \PY{o}{=} \PY{n}{tmdb\PYZus{}file}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{budget}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+            \PY{n}{neg\PYZus{}zero\PYZus{}val} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+            \PY{k}{for} \PY{n}{data} \PY{o+ow}{in} \PY{n}{budget}\PY{p}{:}
+                \PY{k}{if} \PY{n}{data} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mf}{0.0}\PY{p}{:}
+                    \PY{n}{neg\PYZus{}zero\PYZus{}val}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{data}\PY{p}{)}
+            
+            \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{neg\PYZus{}zero\PYZus{}val}\PY{p}{)}\PY{p}{)}
+            
+        \PY{n}{print\PYZus{}budget}\PY{p}{(}\PY{p}{)}
+            
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+5696
+
+    \end{Verbatim}
+
+    In the above code we can see that there are minimum 5696 rows for which
+budget is 0. Next we will remove those rows.
+
+    \subsubsection{Data Cleaning}\label{data-cleaning}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{c+c1}{\PYZsh{} After discussing the structure of the data and any problems that need to be}
+        \PY{c+c1}{\PYZsh{}   cleaned, perform those cleaning steps in the second part of this section.}
+        \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}Removing rows where budget or revenue is 0 or less than 0\PYZsq{}\PYZsq{}\PYZsq{}}
+        \PY{k}{def} \PY{n+nf}{remove\PYZus{}zero}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{n}{new\PYZus{}tmdb} \PY{o}{=} \PY{n}{tmdb\PYZus{}file}\PY{p}{[}\PY{p}{(}\PY{n}{tmdb\PYZus{}file}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{budget}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZgt{}}\PY{l+m+mf}{0.0}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{tmdb\PYZus{}file}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{revenue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZgt{}}\PY{l+m+mf}{0.0}\PY{p}{)}\PY{p}{]}
+            
+            \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{new\PYZus{}tmdb}\PY{p}{)}\PY{p}{)}
+        
+            \PY{k}{return} \PY{n}{new\PYZus{}tmdb}
+        
+        \PY{n}{tmdb\PYZus{}without\PYZus{}zero} \PY{o}{=} \PY{n}{remove\PYZus{}zero}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+3855
+
+    \end{Verbatim}
+
+    remove\_zero function removed all the rows from dataframe where budget
+or revenue was 0.
+
+     \#\# Exploratory Data Analysis
+
+\subsubsection{How budget of a movie related to revenue of the movie.
+Considering movies with minimum 1000 votes and 5 average
+vote.}\label{how-budget-of-a-movie-related-to-revenue-of-the-movie.-considering-movies-with-minimum-1000-votes-and-5-average-vote.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{c+c1}{\PYZsh{} Use this, and more code cells, to explore your data. Don\PYZsq{}t forget to add}
+        \PY{c+c1}{\PYZsh{}   Markdown cells to document your observations and findings.}
+        
+        \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}new\PYZus{}stats function prints budget\PYZsq{}s and revenue\PYZsq{}s mean and median. \PYZsq{}\PYZsq{}\PYZsq{}}
+        
+        \PY{k}{def} \PY{n+nf}{new\PYZus{}stats}\PY{p}{(}\PY{n}{new\PYZus{}tmdb}\PY{p}{)}\PY{p}{:}
+            
+            \PY{n+nb}{print}\PY{p}{(}\PY{n}{new\PYZus{}tmdb}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{budget}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{n}{new\PYZus{}tmdb}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{budget}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{median}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+            
+            \PY{n+nb}{print}\PY{p}{(}\PY{n}{new\PYZus{}tmdb}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{revenue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{n}{new\PYZus{}tmdb}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{revenue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{median}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+            
+        \PY{c+c1}{\PYZsh{}     print(new\PYZus{}tmdb.head())}
+            
+        
+        \PY{n}{new\PYZus{}stats}\PY{p}{(}\PY{n}{tmdb\PYZus{}without\PYZus{}zero}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+37201828.29156939
+24000000.0
+107658932.66977951
+44793222.0
+
+    \end{Verbatim}
+
+    Now we will compute ratio of revenue to budget for each movie
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{k}{def} \PY{n+nf}{ratio}\PY{p}{(}\PY{n}{tmdb}\PY{p}{)}\PY{p}{:}
+            
+            \PY{n}{tmdb}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ratio\PYZus{}revenue\PYZus{}budget}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{divide}\PY{p}{(}\PY{n}{tmdb}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{revenue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{tmdb}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{budget}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+            
+            \PY{n+nb}{id}\PY{o}{=}\PY{n}{tmdb}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ratio\PYZus{}revenue\PYZus{}budget}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{idxmax}\PY{p}{(}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{n}{tmdb}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n+nb}{id}\PY{p}{]}\PY{p}{)}
+            
+            \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{tmdb}\PY{p}{)}\PY{p}{)}
+            \PY{k}{return} \PY{n}{tmdb}
+        
+        
+        \PY{n}{tmdb} \PY{o}{=} \PY{n}{ratio}\PY{p}{(}\PY{n}{tmdb\PYZus{}without\PYZus{}zero}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+id                                                                   8856
+imdb\_id                                                         tt0091326
+popularity                                                       0.772494
+budget                                                                113
+revenue                                                         115103979
+original\_title                                    The Karate Kid, Part II
+cast                    Ralph Macchio|Pat Morita|Martin Kove|Charlie T{\ldots}
+homepage                                                              NaN
+director                                                 John G. Avildsen
+tagline                                    This time, the combat is real.
+keywords                 martial arts|karate|okinawa|revanche|self esteem
+overview                Mr. Miyagi and Daniel take a trip to Okinawa t{\ldots}
+runtime                                                               113
+genres                              Adventure|Drama|Action|Romance|Family
+production\_companies    Columbia Pictures Corporation|Delphi V Product{\ldots}
+release\_date                                                      6/18/86
+vote\_count                                                            211
+vote\_average                                                          5.8
+release\_year                                                         1986
+budget\_adj                                                        224.803
+revenue\_adj                                                   2.28989e+08
+ratio\_revenue\_budget                                          1.01862e+06
+Name: 10495, dtype: object
+3855
+
+    \end{Verbatim}
+
+    When graph was plotted for the ratio\_revenue\_budget, it was evident
+that there are outliers the data. Next function will remove all the rows
+having ratio\_revenue\_budget as outliers
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}This function will remove all the rows with outliers in ratio\PYZus{}revenue\PYZus{}budget\PYZsq{}\PYZsq{}\PYZsq{}}
+         \PY{k}{def} \PY{n+nf}{remove\PYZus{}outliers}\PY{p}{(}\PY{n}{tmdb}\PY{p}{)}\PY{p}{:}
+             \PY{n}{q} \PY{o}{=} \PY{n}{tmdb}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ratio\PYZus{}revenue\PYZus{}budget}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{quantile}\PY{p}{(}\PY{l+m+mf}{0.99}\PY{p}{)}
+             \PY{n}{tmdb\PYZus{}1}\PY{o}{=}\PY{n}{tmdb}\PY{p}{[}\PY{n}{tmdb}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ratio\PYZus{}revenue\PYZus{}budget}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{n}{q}\PY{p}{]}
+         
+             \PY{n+nb}{id}\PY{o}{=}\PY{n}{tmdb\PYZus{}1}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ratio\PYZus{}revenue\PYZus{}budget}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{idxmax}\PY{p}{(}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{n}{tmdb\PYZus{}1}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n+nb}{id}\PY{p}{]}\PY{p}{)}
+             
+             \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{tmdb\PYZus{}1}\PY{p}{)}\PY{p}{)}
+             \PY{k}{return} \PY{n}{tmdb\PYZus{}1}
+         
+         \PY{n}{tmdb\PYZus{}without\PYZus{}outliers}\PY{o}{=}\PY{n}{remove\PYZus{}outliers}\PY{p}{(}\PY{n}{tmdb}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+id                                                                  14438
+imdb\_id                                                         tt1129423
+popularity                                                       0.280555
+budget                                                             500000
+revenue                                                          33456317
+original\_title                                                  Fireproof
+cast                    Kirk Cameron|Erin Bethea|Ken Bevel|Stephen Der{\ldots}
+homepage                                http://www.fireproofthemovie.com/
+director                                                    Alex Kendrick
+tagline                                  Never Leave Your Partner Behind.
+keywords                father-son relationship|fire|firemen|christian{\ldots}
+overview                In Albany, the marriage of Caleb end Catherine{\ldots}
+runtime                                                               122
+genres                                                              Drama
+production\_companies    Carmel Entertainment|Provident Films|Samuel Go{\ldots}
+release\_date                                                      9/26/08
+vote\_count                                                             54
+vote\_average                                                          7.5
+release\_year                                                         2008
+budget\_adj                                                         506393
+revenue\_adj                                                   3.38841e+07
+ratio\_revenue\_budget                                              66.9126
+Name: 3180, dtype: object
+3816
+
+    \end{Verbatim}
+
+    Next we will filter the rows where movies have more than 500 vote counts
+and vote average is more than 5.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{k}{def} \PY{n+nf}{movies\PYZus{}with\PYZus{}1000\PYZus{}votes}\PY{p}{(}\PY{n}{tmdb\PYZus{}without\PYZus{}outliers}\PY{p}{)}\PY{p}{:}
+             \PY{n}{tmdb\PYZus{}with\PYZus{}1000\PYZus{}votes} \PY{o}{=} \PY{n}{tmdb\PYZus{}without\PYZus{}outliers}\PY{p}{[}\PY{p}{(}\PY{n}{tmdb\PYZus{}without\PYZus{}outliers}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vote\PYZus{}count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{\PYZgt{}}\PY{l+m+mi}{1000}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{tmdb\PYZus{}without\PYZus{}outliers}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vote\PYZus{}average}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{\PYZgt{}}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{]}
+             \PY{n+nb}{print}\PY{p}{(}\PY{n}{tmdb\PYZus{}with\PYZus{}1000\PYZus{}votes}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{tmdb\PYZus{}with\PYZus{}1000\PYZus{}votes}\PY{p}{)}\PY{p}{)}
+             \PY{k}{return} \PY{n}{tmdb\PYZus{}with\PYZus{}1000\PYZus{}votes}
+             
+         \PY{n}{tmdb\PYZus{}with\PYZus{}1000\PYZus{}votes}\PY{o}{=}\PY{n}{movies\PYZus{}with\PYZus{}1000\PYZus{}votes}\PY{p}{(}\PY{n}{tmdb\PYZus{}without\PYZus{}outliers}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+       id    imdb\_id  popularity     budget     revenue  \textbackslash{}
+0  135397  tt0369610   32.985763  150000000  1513528810   
+1   76341  tt1392190   28.419936  150000000   378436354   
+2  262500  tt2908446   13.112507  110000000   295238201   
+3  140607  tt2488496   11.173104  200000000  2068178225   
+4  168259  tt2820852    9.335014  190000000  1506249360   
+
+                 original\_title  \textbackslash{}
+0                Jurassic World   
+1            Mad Max: Fury Road   
+2                     Insurgent   
+3  Star Wars: The Force Awakens   
+4                     Furious 7   
+
+                                                cast  \textbackslash{}
+0  Chris Pratt|Bryce Dallas Howard|Irrfan Khan|Vi{\ldots}   
+1  Tom Hardy|Charlize Theron|Hugh Keays-Byrne|Nic{\ldots}   
+2  Shailene Woodley|Theo James|Kate Winslet|Ansel{\ldots}   
+3  Harrison Ford|Mark Hamill|Carrie Fisher|Adam D{\ldots}   
+4  Vin Diesel|Paul Walker|Jason Statham|Michelle {\ldots}   
+
+                                            homepage          director  \textbackslash{}
+0                      http://www.jurassicworld.com/   Colin Trevorrow   
+1                        http://www.madmaxmovie.com/     George Miller   
+2     http://www.thedivergentseries.movie/\#insurgent  Robert Schwentke   
+3  http://www.starwars.com/films/star-wars-episod{\ldots}       J.J. Abrams   
+4                           http://www.furious7.com/         James Wan   
+
+                         tagline          {\ldots}          runtime  \textbackslash{}
+0              The park is open.          {\ldots}              124   
+1             What a Lovely Day.          {\ldots}              120   
+2     One Choice Can Destroy You          {\ldots}              119   
+3  Every generation has a story.          {\ldots}              136   
+4            Vengeance Hits Home          {\ldots}              137   
+
+                                      genres  \textbackslash{}
+0  Action|Adventure|Science Fiction|Thriller   
+1  Action|Adventure|Science Fiction|Thriller   
+2         Adventure|Science Fiction|Thriller   
+3   Action|Adventure|Science Fiction|Fantasy   
+4                      Action|Crime|Thriller   
+
+                                production\_companies release\_date vote\_count  \textbackslash{}
+0  Universal Studios|Amblin Entertainment|Legenda{\ldots}       6/9/15       5562   
+1  Village Roadshow Pictures|Kennedy Miller Produ{\ldots}      5/13/15       6185   
+2  Summit Entertainment|Mandeville Films|Red Wago{\ldots}      3/18/15       2480   
+3          Lucasfilm|Truenorth Productions|Bad Robot     12/15/15       5292   
+4  Universal Pictures|Original Film|Media Rights {\ldots}       4/1/15       2947   
+
+  vote\_average  release\_year    budget\_adj   revenue\_adj  ratio\_revenue\_budget  
+0          6.5          2015  1.379999e+08  1.392446e+09             10.090192  
+1          7.1          2015  1.379999e+08  3.481613e+08              2.522909  
+2          6.3          2015  1.012000e+08  2.716190e+08              2.683984  
+3          7.5          2015  1.839999e+08  1.902723e+09             10.340891  
+4          7.3          2015  1.747999e+08  1.385749e+09              7.927628  
+
+[5 rows x 22 columns]
+551
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}Mean median and other stats for revenue to budget ratio\PYZsq{}\PYZsq{}\PYZsq{}}
+         \PY{k}{def} \PY{n+nf}{revenue\PYZus{}to\PYZus{}budget\PYZus{}stats}\PY{p}{(}\PY{n}{tmdb\PYZus{}with\PYZus{}1000\PYZus{}votes}\PY{p}{)}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Mean is}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{tmdb\PYZus{}with\PYZus{}1000\PYZus{}votes}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ratio\PYZus{}revenue\PYZus{}budget}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Median is}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{tmdb\PYZus{}with\PYZus{}1000\PYZus{}votes}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ratio\PYZus{}revenue\PYZus{}budget}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{median}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Max is}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{tmdb\PYZus{}with\PYZus{}1000\PYZus{}votes}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ratio\PYZus{}revenue\PYZus{}budget}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Min is}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{tmdb\PYZus{}with\PYZus{}1000\PYZus{}votes}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ratio\PYZus{}revenue\PYZus{}budget}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+             
+             
+             
+         \PY{n}{revenue\PYZus{}to\PYZus{}budget\PYZus{}stats}\PY{p}{(}\PY{n}{tmdb\PYZus{}with\PYZus{}1000\PYZus{}votes}\PY{p}{)}
+             
+             
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Mean is 5.837153338042944
+Median is 3.9653850430107527
+Max is 55.163268125
+Min is 0.211753666667
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{k}{def} \PY{n+nf}{plot\PYZus{}graph}\PY{p}{(}\PY{n}{tmdb\PYZus{}with\PYZus{}1000\PYZus{}votes}\PY{p}{)}\PY{p}{:}
+             
+             \PY{n}{ratio\PYZus{}revenue\PYZus{}budget} \PY{o}{=} \PY{n}{tmdb\PYZus{}with\PYZus{}1000\PYZus{}votes}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ratio\PYZus{}revenue\PYZus{}budget}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+             \PY{n}{my\PYZus{}plot} \PY{o}{=} \PY{n}{ratio\PYZus{}revenue\PYZus{}budget}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{18}\PY{p}{,} \PY{l+m+mi}{16}\PY{p}{)}\PY{p}{,}\PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{area}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}     print(t)}
+         
+         \PY{n}{plot\PYZus{}graph}\PY{p}{(}\PY{n}{tmdb\PYZus{}with\PYZus{}1000\PYZus{}votes}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_23_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsubsection{How budget of a movie is related to average vote.
+Considering movies with minimum 500
+votes.}\label{how-budget-of-a-movie-is-related-to-average-vote.-considering-movies-with-minimum-500-votes.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}filtering the movies with more than 500 votes\PYZsq{}\PYZsq{}\PYZsq{}}
+         
+         \PY{k}{def} \PY{n+nf}{tmdb\PYZus{}with\PYZus{}500\PYZus{}votes}\PY{p}{(}\PY{n}{tmdb\PYZus{}without\PYZus{}outliers}\PY{p}{)}\PY{p}{:}
+             \PY{n}{tmdb\PYZus{}with\PYZus{}500\PYZus{}vote} \PY{o}{=} \PY{n}{tmdb\PYZus{}without\PYZus{}outliers}\PY{p}{[}\PY{n}{tmdb\PYZus{}without\PYZus{}outliers}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vote\PYZus{}count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{\PYZgt{}}\PY{l+m+mi}{5000}\PY{p}{]}
+             \PY{n+nb}{print}\PY{p}{(}\PY{n}{tmdb\PYZus{}with\PYZus{}500\PYZus{}vote}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{tmdb\PYZus{}with\PYZus{}500\PYZus{}vote}\PY{p}{)}\PY{p}{)}
+             \PY{k}{return} \PY{n}{tmdb\PYZus{}with\PYZus{}500\PYZus{}vote}
+         
+         \PY{n}{tmdb\PYZus{}with\PYZus{}500\PYZus{}vote} \PY{o}{=} \PY{n}{tmdb\PYZus{}with\PYZus{}500\PYZus{}votes}\PY{p}{(}\PY{n}{tmdb\PYZus{}without\PYZus{}outliers}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+         id    imdb\_id  popularity     budget     revenue  \textbackslash{}
+0    135397  tt0369610   32.985763  150000000  1513528810   
+1     76341  tt1392190   28.419936  150000000   378436354   
+3    140607  tt2488496   11.173104  200000000  2068178225   
+629  157336  tt0816692   24.949134  165000000   621752480   
+630  118340  tt2015381   14.311205  170000000   773312399   
+
+                   original\_title  \textbackslash{}
+0                  Jurassic World   
+1              Mad Max: Fury Road   
+3    Star Wars: The Force Awakens   
+629                  Interstellar   
+630       Guardians of the Galaxy   
+
+                                                  cast  \textbackslash{}
+0    Chris Pratt|Bryce Dallas Howard|Irrfan Khan|Vi{\ldots}   
+1    Tom Hardy|Charlize Theron|Hugh Keays-Byrne|Nic{\ldots}   
+3    Harrison Ford|Mark Hamill|Carrie Fisher|Adam D{\ldots}   
+629  Matthew McConaughey|Jessica Chastain|Anne Hath{\ldots}   
+630  Chris Pratt|Zoe Saldana|Dave Bautista|Vin Dies{\ldots}   
+
+                                              homepage           director  \textbackslash{}
+0                        http://www.jurassicworld.com/    Colin Trevorrow   
+1                          http://www.madmaxmovie.com/      George Miller   
+3    http://www.starwars.com/films/star-wars-episod{\ldots}        J.J. Abrams   
+629                  http://www.interstellarmovie.net/  Christopher Nolan   
+630                        http://marvel.com/guardians         James Gunn   
+
+                                               tagline          {\ldots}           \textbackslash{}
+0                                    The park is open.          {\ldots}            
+1                                   What a Lovely Day.          {\ldots}            
+3                        Every generation has a story.          {\ldots}            
+629  Mankind was born on Earth. It was never meant {\ldots}          {\ldots}            
+630                        All heroes start somewhere.          {\ldots}            
+
+    runtime                                     genres  \textbackslash{}
+0       124  Action|Adventure|Science Fiction|Thriller   
+1       120  Action|Adventure|Science Fiction|Thriller   
+3       136   Action|Adventure|Science Fiction|Fantasy   
+629     169            Adventure|Drama|Science Fiction   
+630     121           Action|Science Fiction|Adventure   
+
+                                  production\_companies release\_date  \textbackslash{}
+0    Universal Studios|Amblin Entertainment|Legenda{\ldots}       6/9/15   
+1    Village Roadshow Pictures|Kennedy Miller Produ{\ldots}      5/13/15   
+3            Lucasfilm|Truenorth Productions|Bad Robot     12/15/15   
+629  Paramount Pictures|Legendary Pictures|Warner B{\ldots}      11/5/14   
+630  Marvel Studios|Moving Picture Company (MPC)|Bu{\ldots}      7/30/14   
+
+    vote\_count vote\_average  release\_year    budget\_adj   revenue\_adj  \textbackslash{}
+0         5562          6.5          2015  1.379999e+08  1.392446e+09   
+1         6185          7.1          2015  1.379999e+08  3.481613e+08   
+3         5292          7.5          2015  1.839999e+08  1.902723e+09   
+629       6498          8.0          2014  1.519800e+08  5.726906e+08   
+630       5612          7.9          2014  1.565855e+08  7.122911e+08   
+
+     ratio\_revenue\_budget  
+0               10.090192  
+1                2.522909  
+3               10.340891  
+629              3.768197  
+630              4.548896  
+
+[5 rows x 22 columns]
+24
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}Standardizing the data\PYZsq{}\PYZsq{}\PYZsq{}}
+         \PY{k}{def} \PY{n+nf}{standardize}\PY{p}{(}\PY{n}{tmdb\PYZus{}with\PYZus{}500\PYZus{}vote}\PY{p}{)}\PY{p}{:}
+         
+             \PY{n}{tmdb\PYZus{}with\PYZus{}500\PYZus{}vote}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{budget\PYZus{}adj}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{n}{tmdb\PYZus{}with\PYZus{}500\PYZus{}vote}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{budget\PYZus{}adj}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{tmdb\PYZus{}with\PYZus{}500\PYZus{}vote}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{budget\PYZus{}adj}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{o}{/}\PY{n}{tmdb\PYZus{}with\PYZus{}500\PYZus{}vote}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{budget\PYZus{}adj}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{p}{)}
+             \PY{n}{tmdb\PYZus{}with\PYZus{}500\PYZus{}vote}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vote\PYZus{}average}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{n}{tmdb\PYZus{}with\PYZus{}500\PYZus{}vote}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vote\PYZus{}average}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{tmdb\PYZus{}with\PYZus{}500\PYZus{}vote}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vote\PYZus{}average}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{o}{/}\PY{n}{tmdb\PYZus{}with\PYZus{}500\PYZus{}vote}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vote\PYZus{}average}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{p}{)}
+             \PY{k}{return} \PY{n}{tmdb\PYZus{}with\PYZus{}500\PYZus{}vote}
+             
+         \PY{n}{tmdb\PYZus{}standardize} \PY{o}{=} \PY{n}{standardize}\PY{p}{(}\PY{n}{tmdb\PYZus{}with\PYZus{}500\PYZus{}vote}\PY{p}{)}
+             
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{k}{def} \PY{n+nf}{corelation}\PY{p}{(}\PY{n}{tmdb\PYZus{}standardize}\PY{p}{)}\PY{p}{:}
+         
+             \PY{n+nb}{print}\PY{p}{(}\PY{n}{tmdb\PYZus{}standardize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{budget\PYZus{}adj}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{n}{tmdb\PYZus{}standardize}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vote\PYZus{}average}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+             
+         \PY{n}{corelation}\PY{p}{(}\PY{n}{tmdb\PYZus{}standardize}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+-0.251364289165
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{n}{tmdb\PYZus{}standardize}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{budget\PYZus{}adj}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vote\PYZus{}average}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{18}\PY{p}{,} \PY{l+m+mi}{16}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}26}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x7ff91c5b7048>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_28_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+     \#\# Conclusions
+
+    From 1st Question, ie How budget of a movie related to revenue of the
+movie. Considering movies with minimum 1000 votes and 5 average vote,
+following results came:
+
+Movies with 5 average vote tends to earn 5 times than the budget on an
+average. This may be wrong as we had very limited dataset after cleaning
+and filtering the data. Also other factors may be present to manipulate.
+
+From 2nd Question, ie How budget of a movie is related to average vote.
+Considering movies with minimum 500 votes.following results came:
+
+There is a negetive corelation between budget(adjusted) and averavge
+rating. This again may not be true because of other factors.
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
