@@ -11803,7 +11803,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
@@ -11812,6 +11812,7 @@ div#notebook {
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 </pre></div>
 
 </div>
@@ -12179,7 +12180,7 @@ Median is 0.0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># After discussing the structure of the data and any problems that need to be</span>
@@ -12237,7 +12238,7 @@ Median is 0.0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Use this, and more code cells, to explore your data. Don&#39;t forget to add</span>
@@ -12295,7 +12296,7 @@ Median is 0.0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">ratio</span><span class="p">(</span><span class="n">tmdb</span><span class="p">):</span>
@@ -12368,7 +12369,7 @@ Name: 10495, dtype: object
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&#39;&#39;&#39;This function will remove all the rows with outliers in ratio_revenue_budget&#39;&#39;&#39;</span>
@@ -12442,7 +12443,7 @@ Name: 3180, dtype: object
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">movies_with_1000_votes</span><span class="p">(</span><span class="n">tmdb_without_outliers</span><span class="p">):</span>
@@ -12536,7 +12537,7 @@ Name: 3180, dtype: object
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&#39;&#39;&#39;Mean median and other stats for revenue to budget ratio&#39;&#39;&#39;</span>
@@ -12581,7 +12582,7 @@ Min is 0.211753666667
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># def plot_graph(tmdb_with_1000_votes):</span>
@@ -12605,6 +12606,7 @@ Min is 0.211753666667
 <span class="c1"># We will make a column of just the year</span>
 <span class="n">plt_df</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)[:</span><span class="mi">4</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">plt_df</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
 <span class="n">plt_df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;revenue&#39;</span><span class="p">,</span> <span class="s1">&#39;budget&#39;</span><span class="p">],</span> <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">rot</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Average Revenue and Budget over the Years&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Dollars (x10million)&#39;</span><span class="p">)</span>
 <span class="n">plt_df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;Budget/Revenue Ratio&#39;</span><span class="p">,</span> <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">rot</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
@@ -12622,7 +12624,7 @@ Min is 0.211753666667
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[14]:</div>
+<div class="prompt output_prompt">Out[29]:</div>
 
 
 
@@ -13078,13 +13080,192 @@ iIhIKioYIiKSigqGiIik8v8BGmA5gYJaiVoAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>In the 1st graph we can see that movies with higher budgets tend to generate more revenue.</p>
+<p>In the 2nd graph (ie Budget/Revenue ratio over the Years) we can see the ratio of Budget to revenue has increased over the years.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">temp_data</span> <span class="o">=</span> <span class="n">tmdb_with_1000_votes</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">dpi</span> <span class="o">=</span> <span class="mi">105</span><span class="p">)</span>
+
+<span class="c1">#using seaborn to plot</span>
+<span class="c1">#plotting box plot</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">temp_data</span><span class="p">[</span><span class="s1">&#39;revenue_adj&#39;</span><span class="p">],</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+<span class="c1">#showing the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlUAAAHRCAYAAABDz0zhAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+AAAQJQAAECUBLg9teAAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMS4wLCBo
+dHRwOi8vbWF0cGxvdGxpYi5vcmcvpW3flQAAGdNJREFUeJzt3X+w5Xdd3/HXe0my+UFIlGya4HQN
+qTsRSFDAYqsjEjEVaVNFEihaSXRIoQ4kBEYroUAoFVFLQ8JYa7cjCYxTJQTQKjpEBEGxFdAOaCCN
+xrCoiUmwCWHzC9lP/zgn4e7ds3t/5H3v2Xvv4zFzZrPnfH98vp9z7zfPc8733q0xRgAAeGS2zXsA
+AACbgagCAGggqgAAGogqAIAGogoAoIGoAgBoIKoAABqIKgCABqIKAKCBqAIAaCCqAAAaiCoAgAZH
+rGalqnpUkl1J/i6Jf5EZANhMKsnXJrlpjPGV5a60qqjKJKg+s8p1AQA2gick+exyF15tVP1dktxw
+ww056aSTVrkJAIDDz5133pknPvGJybR3lmu1UTWS5KSTTsqOHTtWuQkAgMPaii5xcqE6AEADUQUA
+0EBUAQA0EFUAAA1EFQBAA1EFANBAVAEANBBVAAANRBUAQANRBQDQQFQBADQQVQAADUQVAEADUQUA
+0EBUAQA0EFUAAA1EFQBAA1EFANBAVAEANBBVAAANRBUAQANRBQDQQFQBADQQVQAADUQVAEADUQUA
+0EBUAQA0EFUAAA1EFQBAA1EFANBAVAEANBBVAAANRBUAQANRBQDQ4Ih5D2DeHnjggezZs2dd9/ng
+gw/mtttu2+++U045JUcdddS6jqPDzp07s3379nkPAwDmbstH1Z49e3LRRRfNexgb1u7du7Nr1655
+DwMA5s7HfwAADUQVAEADUQUA0GDLX1M1y32nPzP7jjlhzba/7b67c8zNH17XfXaYNW4AYEJUzbDv
+mBOy79jHbvp9AgB9fPwHANBAVAEANBBVAAANRBUAQANRBQDQQFQBADQQVQAADUQVAEADUQUA0EBU
+AQA0EFUAAA1EFQBAA1EFANBAVAEANBBVAAANRBUAQANRBQDQQFQBADQQVQAADUQVAEADUQUA0EBU
+AQA0EFUAAA1EFQBAA1EFANBAVAEANBBVAAANRBUAQANRBQDQQFQBADQQVQAADUQVAEADUQUA0EBU
+AQA0EFUAAA1EFQBAA1EFANBAVAEANBBVAAANRBUAQANRBQDQQFQBADQQVQAADUQVAEADUQUA0EBU
+AQA0EFUAAA1EFQBAA1EFANBAVAEANBBVAAANRBUAQANRBQDQQFQBADQQVQAADUQVAEADUQUA0EBU
+AQA0EFUAAA1EFQBAA1EFANBAVAEANBBVAAANRBUAQANRBQDQQFQBADQQVQAADUQVAEADUQUA0EBU
+AQA0EFUAAA1EFQBAgyPmPYBZHnjggezZs2e/+3bu3Jnt27fPaUSwcfl+Algfh2VU7dmzJxdddNF+
+9+3evTu7du2a04hg4/L9BLA+fPwHANBAVAEANBBVAAANRBUAQANRBQDQQFQBADQQVQAADUQVAEAD
+UQUA0EBUAQA0EFUAAA1EFQBAA1EFANBAVAEANBBVAAANRBUAQANRBQDQQFQBADQQVQAADUQVAEAD
+UQUA0EBUAQA0EFUAAA1EFQBAA1EFANBAVAEANBBVAAANRBUAQANRBQDQQFQBADQQVQAADUQVAEAD
+UQUA0EBUAQA0EFUAAA1EFQBAA1EFANBAVAEANBBVAAANRBUAQANRBQDQQFQBADQQVQAADUQVAEAD
+UQUA0EBUAQA0EFUAAA1EFQBAA1EFANBAVAEANBBVAAANRBUAQANRBQDQQFQBADQQVQAADUQVAEAD
+UQUA0EBUAQA0EFUAAA1EFQBAA1EFANBAVAEANBBVAAANRBUAQANRBQDQQFQBADQQVQAADUQVAEAD
+UQUA0EBUAQA0EFUAAA1EFQBAA1EFANBAVAEANBBVAAANRBVscR/84Adz3nnn5aqrrsq5556bc889
+N7/7u797yGUXPr6c9WetdzBXXnllzj777Dz72c8+5HZWsk2WthnmczMcw2pspeM+3I9VVMEWtnfv
+3rztbW/LnXfemfe+97255557cs899+TKK6/M3r17D7rsVVddlb179y5r/VnrHcwdd9yR973vfRlj
+5P77789b3/rWmdu58sorc9VVVy1rmyxtJc/R4WozHMNqbKXj3gjHesS8BzDLl7/85QPu27Nnz5rs
+a+Z2931lTfa14c2Yl7V6Xugz6zl66Hvs6quvzl133ZUkGWM8/Pjdd9+da665Jj/2Yz/28H0Ll73r
+rrtyzTXXZIyx5Pqz1lu43YUuu+yy/bbzxS9+ceZ27r777oeXWWqbLG0lz9HhajMcw2pspePeCMd6
+WEbVrbfeesB9b3zjG9dt/9se+FL2PfrkddvfRrHtgS8dcN96Pi/0ufXWW3P00UfnuuuuO+gy1157
+bZ797Gfn9NNPz80333zAstdee+0h93HttdfmzDPPPGC9d7/73Q9vd6GPfOQjuemmmw7Yzrve9a6Z
+21nONlnarOd2o83nZjiG1dhKx71RjnVZH/9V1XFVteOhW5LHrvG4gDU0xsgVV1yxrGX27ds3c9kx
+xn7vKs16/M1vfvPMx9761rfut+6+ffsOumyS/PRP//QhxzprmyztUF8HG2U+N8MxrMZWOu6NdKzL
+vabqx5PcvuD2mTUbEbDmbr311nz605/Ovn37Drncpz/96Vx//fXLWnaWe++994D19u3bl0996lO5
+8cYbH77v+uuvz7333nvQ7dx3332H3P+sbbK0G2+8ceZzu5HmczMcw2pspePeSMe63Kj6uSQnL7g9
+Yc1GBKy5U089NWeddVa2bTv0KeCss87KOeecs6xlZzn22GMPWG/btm158pOfnDPOOOPh+84555wc
+e+yxB93OMcccc8j9z9omSzvjjDNmPrcbaT43wzGsxlY67o10rMu6pmqMsTfJw5fZV9WaDSiZnPAX
+e+1rX5udO3e272vPnj0HXBe0b/uj2/ezGcyal7V6Xugz62v8cY97XC699NK8+MUvPuh6VZVXvvKV
+2bZt28xlHzoPHOyt96rKq1/96rz+9a8/4LFLL710v/PItm3b8pM/+ZN53eteN3Nbl1122cztHGqb
+LK2qDvp1sFHmczMcw2pspePeSMd6WF6ofuSRRx5w386dO7Nr1671GcC2R63PfjaaGfOyrs8LbY48
+8sicfvrped7znnfQC87PP//8PP7xj0+Smcuef/75GWMccv3v+I7vOGC988477+HtLvSMZzwju3bt
+OuBi9ec///kzt7PQwbbJ0mY9txttPjfDMazGVjrujXKsfk8VbGEXXnhhTjzxxCT7vwN9wgkn5IIL
+LjjosieeeGIuuOCCZa0/a72DedOb3rTfdh7zmMfM3M4JJ5yQE044YVnbZGkreY4OV5vhGFZjKx33
+RjhWUQVb2HHHHZeXv/zlOemkk/Lc5z43xx9/fI4//vhccsklOe644w667MUXX5zjjjtuWevPWu9g
+duzYke///u9PVeXoo4/OK17xipnbueSSS3LxxRcva5ssbSXP0eFqMxzDamyl494Ix1qr+VHE6a9V
+uP3222/Pjh072gd100035aKLLtrvvt27d6/Jx0yz9rX3Sd+Xfceu3W+N2HbvF3Lcn/3auu6zw6xx
+r9XzQp/1/H4C2AzuuOOOnHzyyUly8hjjjuWu550qAIAGogoAoIGoAgBoIKoAABqIKgCABqIKAKCB
+qAIAaCCqAAAaiCoAgAaiCgCggagCAGggqgAAGogqAIAGogoAoIGoAgBoIKoAABqIKgCABqIKAKCB
+qAIAaCCqAAAaiCoAgAaiCgCggagCAGggqgAAGogqAIAGogoAoIGoAgBoIKoAABqIKgCABqIKAKCB
+qAIAaCCqAAAaiCoAgAaiCgCggagCAGggqgAAGogqAIAGogoAoIGoAgBoIKoAABqIKgCABqIKAKCB
+qAIAaCCqAAAaiCoAgAaiCgCggagCAGggqgAAGogqAIAGogoAoIGoAgBoIKoAABqIKgCABqIKAKCB
+qAIAaCCqAAAaiCoAgAaiCgCggagCAGggqgAAGogqAIAGogoAoIGoAgBoIKoAABqIKgCABqIKAKCB
+qAIAaCCqAAAaiCoAgAaiCgCggagCAGggqgAAGogqAIAGogoAoMER8x7ALDt37szu3bsPuA9YOd9P
+AOvjsIyq7du3Z9euXfMeBmwKvp8A1oeP/wAAGogqAIAGogoAoIGoAgBoIKoAABqIKgCABqIKAKCB
+qAIAaCCqAAAaiCoAgAaiCgCggagCAGggqgAAGogqAIAGogoAoIGoAgBoIKoAABqIKgCABqIKAKCB
+qAIAaCCqAAAaiCoAgAaiCgCggagCAGggqgAAGogqAIAGogoAoIGoAgBoIKoAABqIKgCABqIKAKCB
+qAIAaCCqAAAaiCoAgAaiCgCggagCAGggqgAAGogqAIAGogoAoIGoAgBoIKoAABqIKgCABqIKAKCB
+qAIAaCCqAAAaiCoAgAaiCgCggagCAGggqgAAGogqAIAGogoAoIGoAgBoIKoAABqIKgCABqIKAKCB
+qAIAaCCqAAAaiCoAgAaiCgCggagCAGggqgAAGogqAIAGogoAoIGoAgBoIKoAABqIKgCABqIKAKCB
+qAIAaCCqAAAaiCoAgAaiCgCggagCAGggqgAAGhwx7wEcjrbdd/e6b3+t99lhI4wRAOZFVM1wzM0f
+3hL7BAD6+PgPAKCBqAIAaCCqAAAabPlrqnbu3Jndu3ev6z4ffPDB3Hbbbfvdd8opp+Soo45a13F0
+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
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The above plot is a boxplot graph of revenue_adj. This graph is indicating the data is left skewed.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="How-budget-of-a-movie-is-related-to-average-vote.-Considering-movies-with-minimum-500-votes.">How budget of a movie is related to average vote. Considering movies with minimum 500 votes.<a class="anchor-link" href="#How-budget-of-a-movie-is-related-to-average-vote.-Considering-movies-with-minimum-500-votes.">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&#39;&#39;&#39;filtering the movies with more than 500 votes&#39;&#39;&#39;</span>
@@ -13187,7 +13368,7 @@ iIhIKioYIiKSigqGiIik8v8BGmA5gYJaiVoAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&#39;&#39;&#39;Standardizing the data&#39;&#39;&#39;</span>
@@ -13208,7 +13389,7 @@ iIhIKioYIiKSigqGiIik8v8BGmA5gYJaiVoAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">corelation</span><span class="p">(</span><span class="n">tmdb_standardize</span><span class="p">):</span>
@@ -13243,7 +13424,7 @@ iIhIKioYIiKSigqGiIik8v8BGmA5gYJaiVoAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># tmdb_standardize[[&#39;budget_adj&#39;,&#39;vote_average&#39;]].plot(figsize=(18, 16),title=&#39;Relation between budget and vote average&#39;)</span>
@@ -13268,7 +13449,7 @@ iIhIKioYIiKSigqGiIik8v8BGmA5gYJaiVoAAAAASUVORK5CYII=
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[20]:</div>
+<div class="prompt output_prompt">Out[19]:</div>
 
 
 
@@ -13503,6 +13684,15 @@ rkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>From the above graph we can conclude that budget of a movie and popularity( in terms of average vote) have a negetive corelation. That is a movie with small budget may get more average votes.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p><a id='conclusions'></a></p>
 <h2 id="Conclusions">Conclusions<a class="anchor-link" href="#Conclusions">&#182;</a></h2>
 </div>
@@ -13514,7 +13704,9 @@ rkJggg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>From 1st Question, ie How budget of a movie related to revenue of the movie. Considering movies with minimum 1000 votes and 5 average vote, following results came:</p>
 <h4>Movies with 5 average vote tends to earn 5 times than the budget on an average. This may be wrong as we had very limited dataset after cleaning and filtering the data. Also other factors may be present to manipulate.</h4><p>From 2nd Question, ie How budget of a movie is related to average vote. Considering movies with minimum 500 votes.following results came:</p>
-<h4>There is a negetive corelation between budget(adjusted) and averavge rating. This again may not be true because of other factors.</h4>
+<h4>There is a negetive corelation between budget(adjusted) and averavge rating. This again may not be true because of other factors.</h4><p><b>Limitation</b><br/>
+The dataset had too many null values for budget column, hence lot of rows had to be excluded which resulted in <b>smaller dataset</b>.</p>
+
 </div>
 </div>
 </div>
